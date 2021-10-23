@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frankfurter/shared/app_colors.dart';
 
 import 'modules/home/home_page.dart';
 
@@ -11,7 +12,7 @@ class AppWidget extends StatelessWidget {
       title: 'FrankFurter',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
-        scaffoldBackgroundColor: Colors.grey[900],
+        scaffoldBackgroundColor: AppColors.background,
       ),
       initialRoute: '/home',
       routes: {
