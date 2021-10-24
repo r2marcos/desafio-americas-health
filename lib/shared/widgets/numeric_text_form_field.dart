@@ -7,11 +7,14 @@ class NumericTextFormField extends StatelessWidget {
   final NumericTextEditingController controller;
   final FocusNode? focusNode;
   final ValueChanged<String>? onFieldSubmitted;
+  final bool? readOnly;
+
   const NumericTextFormField(
       {Key? key,
       required this.controller,
       this.focusNode,
-      this.onFieldSubmitted})
+      this.onFieldSubmitted,
+      this.readOnly})
       : super(key: key);
 
   @override
@@ -21,6 +24,7 @@ class NumericTextFormField extends StatelessWidget {
       focusNode: focusNode,
       textAlign: TextAlign.end,
       keyboardType: TextInputType.number,
+      readOnly: readOnly ?? false,
       inputFormatters: [
         CurrencyTextInputFormatter(locale: 'pt_BR', name: '', decimalDigits: 2)
       ],
