@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:frankfurter/apis/frankfurter/frankfurter_api.dart';
+import 'package:frankfurter/exceptions/fetch_data_exception.dart';
 import 'package:frankfurter/models/conversion.dart';
 import 'package:frankfurter/models/rate.dart';
 import 'package:http/http.dart' as http;
@@ -21,8 +22,12 @@ class GetHistory {
     final uri = Uri.parse(
         '${api.host}/$startDateStr..$endDateStr?from=$from&to=$to&amount=$amount');
 
-    final response = await http.get(uri);
-    return GetHistoryResponse.parse(response);
+    try {
+      final response = await http.get(uri);
+      return GetHistoryResponse.parse(response);
+    } catch (e) {
+      throw FetchDataException('No Internet Connection');
+    }
   }
 }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frankfurter/app_widget.dart';
-import 'package:frankfurter/providers/currencies_provider.dart';
+import 'package:frankfurter/providers/rate_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CurrenciesProvider()),
+        ChangeNotifierProvider(create: (_) => RateProvider()),
       ],
       child: const App(),
     ),

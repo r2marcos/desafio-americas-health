@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:frankfurter/apis/frankfurter/frankfurter_api.dart';
+import 'package:frankfurter/exceptions/fetch_data_exception.dart';
 import 'package:frankfurter/models/currency.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,8 +9,12 @@ class GetCurrencies {
   static Future<GetCurrenciesResponse> execute(FrankFurterApi api) async {
     final uri = Uri.parse('${api.host}/currencies');
 
-    final response = await http.get(uri);
-    return GetCurrenciesResponse.parse(response);
+    try {
+      final response = await http.get(uri);
+      return GetCurrenciesResponse.parse(response);
+    } catch (e) {
+      throw FetchDataException('No Internet Connection');
+    }
   }
 }
 

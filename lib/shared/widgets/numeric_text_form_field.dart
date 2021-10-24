@@ -6,14 +6,18 @@ import 'package:frankfurter/shared/app_colors.dart';
 class NumericTextFormField extends StatelessWidget {
   final NumericTextEditingController controller;
   final FocusNode? focusNode;
-  final ValueChanged<String>? onFieldSubmitted;
+  final TextAlign? textAlign;
+  final FormFieldValidator<String>? validator;
+  final ValueChanged<String>? onChanged;
   final bool? readOnly;
 
   const NumericTextFormField(
       {Key? key,
       required this.controller,
       this.focusNode,
-      this.onFieldSubmitted,
+      this.textAlign,
+      this.validator,
+      this.onChanged,
       this.readOnly})
       : super(key: key);
 
@@ -22,21 +26,27 @@ class NumericTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       focusNode: focusNode,
-      textAlign: TextAlign.end,
+      textAlign: textAlign ?? TextAlign.end,
       keyboardType: TextInputType.number,
       readOnly: readOnly ?? false,
+      validator: validator,
+      minLines: 1,
+      maxLines: 2,
       inputFormatters: [
         CurrencyTextInputFormatter(locale: 'pt_BR', name: '', decimalDigits: 2)
       ],
-      onFieldSubmitted: onFieldSubmitted,
       onChanged: (value) {
         if (value.isEmpty) controller.text = '0,00';
+        onChanged?.call(value);
       },
-      style: TextStyle(color: AppColors.textForm),
       onTap: () {
         controller.selection = TextSelection.fromPosition(
             TextPosition(offset: controller.text.length));
       },
+      style: TextStyle(
+          color: AppColors.textForm,
+          fontSize: 32,
+          overflow: TextOverflow.visible),
     );
   }
 }

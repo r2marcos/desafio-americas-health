@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:frankfurter/apis/frankfurter/frankfurter_api.dart';
+import 'package:frankfurter/exceptions/fetch_data_exception.dart';
 import 'package:frankfurter/models/conversion.dart';
 import 'package:frankfurter/models/rate.dart';
 import 'package:http/http.dart' as http;
@@ -16,8 +17,12 @@ class GetLatest {
     final uri =
         Uri.parse('${api.host}/latest?from=$from&to=$to&amount=$amount');
 
-    final response = await http.get(uri);
-    return GetLatestResponse.parse(response);
+    try {
+      final response = await http.get(uri);
+      return GetLatestResponse.parse(response);
+    } catch (e) {
+      throw FetchDataException('No Internet Connection');
+    }
   }
 }
 
@@ -51,7 +56,11 @@ class GetLatestResponse {
           date: _dateFormat.parse(data['date']),
           rates: (data['rates'] as Map)
               .entries
-              .map((e) => Rate(currencyCode: e.key, amount: e.value))
+              .map((e) => Rate(
+                  currencyCode: e.key,
+                  amount: e.value.runtimeType == int
+                      ? (e.value as int).toDouble()
+                      : e.value))
               .toList()),
     );
   }

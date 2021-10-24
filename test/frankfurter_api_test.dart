@@ -10,7 +10,7 @@ main() {
 
   test('get latest', () async {
     final result = await FrankFurterApi.instance
-        .getLatest(from: 'USD', to: 'BRL', amount: 1.0);
+        .getLatest(from: 'USD', to: 'BRL', amount: 0.0);
     expect(result.statusCode, 200);
     expect(result.conversion, isNotNull);
   });
