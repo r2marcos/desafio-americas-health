@@ -14,7 +14,7 @@ class HomeController {
 
   void init(BuildContext context) async {
     try {
-      context.read<RateProvider>().fetchCurrencies();
+      await context.read<RateProvider>().fetchCurrencies();
     } catch (e) {
       showSnackbarWithException(context, e);
     }

@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.marcosrosa.frankfurter">
+
+   <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="frankfurter"
         android:icon="@mipmap/ic_launcher">
