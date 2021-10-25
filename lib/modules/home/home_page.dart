@@ -161,10 +161,10 @@ class _HomePageState extends State<HomePage> {
           children: [
             TextSpan(
               text: controller.rateCurrencyCode(context),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w900,
-                color: Colors.pink,
+                color: Colors.green[600],
               ),
             )
           ],

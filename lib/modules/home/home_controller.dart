@@ -53,7 +53,7 @@ class HomeController {
       Utils.formatCurrency(context.watch<RateProvider>().rate);
 
   String rateCurrencyCode(BuildContext context) =>
-      ' ${context.watch<RateProvider>().toCurrency?.code ?? ''}';
+      ' ${context.watch<RateProvider>().rateCurrencyCode}';
 
   getRate(BuildContext context) async {
     if (!formKey.currentState!.validate()) {

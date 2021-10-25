@@ -17,6 +17,13 @@ class RateProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String? _rateCurrencyCode = '';
+  String get rateCurrencyCode => _rateCurrencyCode ?? '';
+  set rateCurrencyCode(String value) {
+    _rateCurrencyCode = value;
+    notifyListeners();
+  }
+
   List<Currency> _currencies = [];
   List<Currency> get currencies => _currencies;
   set currencies(List<Currency> value) {
@@ -46,6 +53,7 @@ class RateProvider with ChangeNotifier {
         .fetchRate(fromCurrency!.code, toCurrency!.code, amount);
     if (response.statusCode == 200) {
       rate = response.conversion.rates.single.amount;
+      rateCurrencyCode = response.conversion.rates.single.currencyCode;
     }
   }
 
