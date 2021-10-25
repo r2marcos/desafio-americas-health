@@ -33,7 +33,8 @@ class NumericTextFormField extends StatelessWidget {
       minLines: 1,
       maxLines: 2,
       inputFormatters: [
-        CurrencyTextInputFormatter(locale: 'pt_BR', name: '', decimalDigits: 2)
+        CurrencyTextInputFormatter(
+            locale: 'pt_BR', name: '\$', decimalDigits: 2)
       ],
       onChanged: (value) {
         if (value.isEmpty) controller.text = '0,00';

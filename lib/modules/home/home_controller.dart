@@ -32,7 +32,8 @@ class HomeController {
       Utils.formatCurrency(context.watch<RateProvider>().amount);
 
   void amountChanged(BuildContext context, String value) =>
-      context.read<RateProvider>().amount = value.parseDouble();
+      context.read<RateProvider>().amount =
+          value.replaceFirst('\$', '').trim().parseDouble();
 
   List<Currency> currencies(BuildContext context) =>
       context.watch<RateProvider>().currencies;
