@@ -20,10 +20,10 @@ class HomeController {
     }
   }
 
-  String? amountValidator(String? value) =>
-      (value?.isEmpty ?? true) || value?.trim() == '0,00'
-          ? 'Inform amount'
-          : null;
+  String? amountValidator(String? value) {
+    final dValue = value?.replaceFirst('\$', '').trim().parseDouble();
+    return dValue == null || dValue == 0.0 ? 'Inform amount' : null;
+  }
 
   String? currencyValidator(Currency? value) =>
       value == null ? 'Select currency' : null;
