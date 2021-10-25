@@ -4,7 +4,7 @@
    <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="frankfurter"
+        android:label="FrnakFurther"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
